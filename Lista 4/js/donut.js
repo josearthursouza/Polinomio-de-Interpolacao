@@ -7,10 +7,11 @@ class Caixa {
     this.vecs=[]; //vetores pto_1 - pto_1
 
     this.largurão=this.graficos.clientWidth;
+    this.num=300 //numero de ptos pra discretizar a curva
 
     this.plotX=[];
-    for(var i =0; i<100;i++){
-      this.plotX.push(i*(this.largurão/100));
+    for(var i =0; i<this.num;i++){
+      this.plotX.push(i*(this.largurão/this.num));
     }
     //console.log(this.plotX);
 
@@ -100,7 +101,7 @@ class Caixa {
       }
 
       this.svg.selectAll('line').remove();
-      for(var i=0; i<99;i++){
+      for(var i=0; i<this.num-1;i++){
         this.svg.append('line')
           .attr('x1', this.plotX[i] ).attr('y1', this.plotY[i]).attr('x2', this.plotX[i+1]).attr('y2', this.plotY[i+1])
           .attr('stroke','gray').attr('stroke-width','1px');
@@ -109,25 +110,4 @@ class Caixa {
     
     
   }
-/*
-  plota(){
-
-    for(let ptoX of this.plotX){
-      var y=0;
-      for(let pto of this.ptos){
-        var t=1;
-        for(let ptoo of this.ptos){
-          if(ptoo!==pto){
-            t=1*((ptoX-pto[0])/(ptoo[0]-pto[0]));
-          }
-        }
-        t=t*pto[1];
-        y+=t;
-      }
-      this.plotY.push(y);
-    }
-    console.log(this.plotY);
-
-  }*/
-  
 }
